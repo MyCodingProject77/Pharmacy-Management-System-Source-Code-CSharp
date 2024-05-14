@@ -1,0 +1,88 @@
+
+
+
+
+         Save Code
+
+
+         SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=PharDB;User ID=sa;Password=***********;Trusted_Connection=True;TrustServerCertificate=True");
+con.Open();
+SqlCommand cnn = new SqlCommand("insert into pharmacy values(@pharmacyid,@name,@address,@phone)", con);
+
+cnn.Parameters.AddWithValue("@PharmacyID", int.Parse(textBox1.Text));
+cnn.Parameters.AddWithValue("@Name", textBox2.Text);
+
+cnn.Parameters.AddWithValue("@Address", textBox3.Text);
+cnn.Parameters.AddWithValue("@Phone", textBox4.Text);
+
+cnn.ExecuteNonQuery();
+con.Close();
+MessageBox.Show("Saved Successfully");
+
+
+
+        Add Code
+
+
+       SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=PharDB;User ID=sa;Password=***********;Trusted_Connection=True;TrustServerCertificate=True");
+con.Open();
+SqlCommand cnn = new SqlCommand("select * from pharmacy", con);
+
+SqlDataAdapter da = new SqlDataAdapter(cnn);
+DataTable table = new DataTable();
+da.Fill(table);
+
+dataGridView1.DataSource = table;
+
+
+
+
+      Update Code
+
+
+
+      SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=PharDB;User ID=sa;Password=***********;Trusted_Connection=True;TrustServerCertificate=True");
+con.Open();
+SqlCommand cnn = new SqlCommand("update pharmacy set name=@name,address=@address,phone=@phone where pharmacyid=@pharmacyid", con);
+
+cnn.Parameters.AddWithValue("@PharmacyID", int.Parse(textBox1.Text));
+cnn.Parameters.AddWithValue("@Name", textBox2.Text);
+
+cnn.Parameters.AddWithValue("@Address", textBox3.Text);
+cnn.Parameters.AddWithValue("@Phone", textBox4.Text);
+
+cnn.ExecuteNonQuery();
+con.Close();
+MessageBox.Show("Updated Successfully");
+
+
+
+
+      Delete Code
+
+
+      SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=PharDB;User ID=sa;Password=***********;Trusted_Connection=True;TrustServerCertificate=True");
+con.Open();
+SqlCommand cnn = new SqlCommand("delete pharmacy where pharmacyid=@pharmacyid", con);
+cnn.Parameters.AddWithValue("@PharmacyID", int.Parse(textBox1.Text));
+
+cnn.ExecuteNonQuery();
+con.Close();
+
+MessageBox.Show("Deleted Successfully");
+
+
+
+
+      Pharmacy Load Code
+
+
+       SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=PharDB;User ID=sa;Password=***********;Trusted_Connection=True;TrustServerCertificate=True");
+ con.Open();
+ SqlCommand cnn = new SqlCommand("select * from pharmacy", con);
+
+ SqlDataAdapter da = new SqlDataAdapter(cnn);
+ DataTable table = new DataTable();
+ da.Fill(table);
+
+ dataGridView1.DataSource = table;
